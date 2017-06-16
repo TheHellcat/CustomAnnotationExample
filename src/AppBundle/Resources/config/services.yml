@@ -1,1 +1,8 @@
 services:
+    demo_annotation_hydrator:
+        class: AppBundle\Service\AnnotationHydrator
+
+    demo_service:
+        class: AppBundle\Service\DemoService
+        arguments:
+            - '@demo_annotation_hydrator'

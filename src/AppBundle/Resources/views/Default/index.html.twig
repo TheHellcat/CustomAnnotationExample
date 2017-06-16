@@ -1,4 +1,49 @@
 {% extends "::base.html.twig" %}
+
+{% block stylesheets %}
+    <style>
+        body {
+            font-family: Helvetica Neue, Helvetica, sans-serif;
+            font-size: 14px;
+            color: #000000;
+        }
+
+        .dataRow {
+            margin: 0px;
+            padding: 10px;
+            border-bottom: solid;
+            border-width: 1px;
+            border-color: #000000;
+            float: left;
+        }
+
+        .dataColumn {
+            width: 200px;
+            float: left;
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
-    Hello World!
+    <h1>Custom Annotation Demo</h1>
+
+    <h2>List of all properties and their additional annotation attributes:</h2>
+    <div class="dataRow">
+        <div class="dataColumn"><strong>Property</strong></div>
+        <div class="dataColumn"><strong>Value</strong></div>
+        <div class="dataColumn"><strong>Annotation Attributes</strong></div>
+    </div>
+    {% for property in properties %}
+        <div class="dataRow">
+            <div class="dataColumn">${{ property.name }}</div>
+            <div class="dataColumn">{{ property.value }}</div>
+            <div class="dataColumn">
+                {% if null != property.annotationData %}
+                    <strong>{{ property.annotationData.value }}</strong><br>
+                    foo = {{ property.annotationData.foo }}<br>
+                    bar = {{ property.annotationData.bar }}<br>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
 {% endblock %}
