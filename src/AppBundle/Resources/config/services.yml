@@ -1,4 +1,8 @@
 services:
-#    app.example:
-#        class: AppBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    demo_annotation_hydrator:
+        class: AppBundle\Service\AnnotationHydrator
+
+    demo_service:
+        class: AppBundle\Service\DemoService
+        arguments:
+            - '@demo_annotation_hydrator'
